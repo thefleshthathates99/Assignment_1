@@ -1,3 +1,32 @@
 <p>
-  channels works!
-</p>
+  <ng-template [ngIf]="loggedIn">
+      <form (submit)="logOut($event)">
+        <button type="submit"> Logout </button>
+      </form>
+    </ng-template>
+  <br>
+  <br>
+  <h1>Welcome to Kekistan,
+    <ng-template [ngIf]="ourLord">
+      Our lord and Savior,
+    </ng-template>
+      {{this.username}}
+  </h1>
+  <br>
+  <h1>Email is: </h1>{{this.email}}
+  <br>
+  <h1>User Level is: </h1>{{this.user_level}}
+  <br>
+  <br>
+  <h1>Groups</h1>
+  <ul>
+    <li *ngFor="let list of lists" id='bordered'><h2>{{list.name}} -- {{list.numberOfUsers}}</h2>
+    <br>
+    <br>
+    <form (submit)="sendMessage($event)">
+        <input type="text" placeholder="Message Us!">
+        <button type="submit">Send Message</button>
+    </form>
+    <br>
+    </li>
+  </ul>

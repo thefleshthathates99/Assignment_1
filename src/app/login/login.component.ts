@@ -19,10 +19,44 @@ export class LoginComponent implements OnInit {
         event.preventDefault();
         console.log(this.username);
         console.log(this.password);
-        if (this.username == "Derrick" && this.password == "pass"){
+
+        if (this.username == "Count Dankula" && this.password == "Newpassword"){
+          localStorage.setItem("username", "Count Dankula");
+          localStorage.setItem("email", "thedank@kekistan.com");
+          localStorage.setItem("permissions", "Basic User");
+
+          console.log(localStorage.getItem("username"));
+          console.log(localStorage.getItem("email"));
+          console.log(localStorage.getItem("permissions"));
+
           this.router.navigateByUrl('/channels');
         }
-        else (
+
+        else if (this.username == "Trump" && this.password == "Newpassword"){
+          localStorage.setItem("username", "President Trump");
+          localStorage.setItem("email", "MAGA@kekistan.com");
+          localStorage.setItem("permissions", "Group User");
+
+          console.log(localStorage.getItem("username"));
+          console.log(localStorage.getItem("email"));
+          console.log(localStorage.getItem("permissions"));
+
+          this.router.navigateByUrl('/channels');
+        }
+
+        else if (this.username == "Pepe" && this.password == "PraiseKek"){
+          localStorage.setItem("username", "Pepe");
+          localStorage.setItem("email", "pepethegreat@kekistan.com");
+          localStorage.setItem("permissions", "Super User");
+
+          console.log(localStorage.getItem("username"));
+          console.log(localStorage.getItem("email"));
+          console.log(localStorage.getItem("permissions"));
+
+          this.router.navigateByUrl('/channels');
+        }
+
+        else(
           alert('Wrong, Username or Password did not match')
         )
   }
