@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
   username:string ='';
   password:string ='';
 
+
   constructor(private router:Router, private form:FormsModule) { }
 
   ngOnInit() {
@@ -32,8 +33,20 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/channels');
         }
 
+        else if (this.username == "Super" && this.password == "Newpassword"){
+          localStorage.setItem("username", "super");
+          localStorage.setItem("email", "N/A");
+          localStorage.setItem("permissions", "Super User");
+
+          console.log(localStorage.getItem("username"));
+          console.log(localStorage.getItem("email"));
+          console.log(localStorage.getItem("permissions"));
+
+          this.router.navigateByUrl('/channels');
+        }
+
         else if (this.username == "Trump" && this.password == "Newpassword"){
-          localStorage.setItem("username", "President Trump");
+          localStorage.setItem("username", "Trump");
           localStorage.setItem("email", "MAGA@kekistan.com");
           localStorage.setItem("permissions", "Group User");
 

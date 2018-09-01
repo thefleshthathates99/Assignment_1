@@ -1,32 +1,85 @@
 <p>
-  <ng-template [ngIf]="loggedIn">
-      <form (submit)="logOut($event)">
-        <button type="submit"> Logout </button>
-      </form>
-    </ng-template>
-  <br>
-  <br>
-  <h1>Welcome to Kekistan,
-    <ng-template [ngIf]="ourLord">
-      Our lord and Savior,
-    </ng-template>
-      {{this.username}}
-  </h1>
-  <br>
-  <h1>Email is: </h1>{{this.email}}
-  <br>
-  <h1>User Level is: </h1>{{this.user_level}}
-  <br>
-  <br>
-  <h1>Groups</h1>
-  <ul>
-    <li *ngFor="let list of lists" id='bordered'><h2>{{list.name}} -- {{list.numberOfUsers}}</h2>
+  <div *ngIf="username;else option2">
+        <form (submit)="logOut($event)">
+          <button type="submit"> Logout </button>
+        </form>
     <br>
     <br>
-    <form (submit)="sendMessage($event)">
-        <input type="text" placeholder="Message Us!">
-        <button type="submit">Send Message</button>
+    <h1>Welcome to Kekistan,
+      <ng-template [ngIf]="ourLord">
+        Our lord and Savior,
+      </ng-template>
+        {{this.username}}
+    </h1>
+    <br>
+    <h1>Email is: </h1>{{this.email}}
+    <br>
+    <h1>User Level is: </h1>{{this.user_level}}
+    <br>
+    <br>
+    <ng-template [ngIf]="groupadmin">
+      <div id = 'bordered'>
+      <h2>Add New User:</h2>
+    <form (submit)="addUser($event)">
+      <input type="username" placeholder="New User" [(ngModel)]='New_User' name="New_User" id="New_User">
+      <input type="group" placeholder="The Group" [(ngModel)]='group' name="group" id="group">
+      <button type="submit"> Submit </button>
+    </form>
+  </div>
+  </ng-template>
+  <br>
+  <br>
+  <ng-template [ngIf]="groupadmin">
+    <div id = 'bordered'>
+    <h2>Add New Group</h2>
+    <form (submit)="addGroup($event)">
+      <input type="group" placeholder="The Group" [(ngModel)]='new_group' name="new_group" id="new_group">
+      <button type="submit"> Submit </button>
     </form>
     <br>
-    </li>
-  </ul>
+    </div>
+  </ng-template>
+    <ng-template [ngIf]="super_admin">
+      <div id = 'bordered'>
+      <h2>Remove User</h2>
+      <form (submit)="removeUser($event)">
+        <input type="username" placeholder="User" [(ngModel)]='Remove_User' name="Remove_User" id="Remove_User">
+        <button type="submit"> Submit </button>
+      </form>
+      </div>
+      </ng-template>
+      <br>
+      <ng-template [ngIf]="groupadmin">
+        <div id = 'bordered'>
+        <h2>Remove Group</h2>
+        <form (submit)="removeGroup($event)">
+          <input type="group" placeholder="The Group" [(ngModel)]='Remove_Group' name="Remove_Group" id="Remove_Group">
+          <button type="submit"> Submit </button>
+        </form>
+        <br>
+        </div>
+        </ng-template>
+    <h1>Groups</h1>
+    <ul>
+      <li *ngFor="let list of lists" id='bordered'><h2>{{list.name}} -- {{list.numberOfUsers}}</h2>
+      <br>
+      <br>
+      <h3>Sending messages to {{list.name}} message board</h3>
+      <input [(ngModel)]="message" />
+      <button (click)="sendMessage()">Send Message</button>
+        <div *ngFor='let message of list.messages' class="message">
+          {{message.text}}
+        </div>
+      <br>
+      </li>
+    </ul>
+</div>
+<br>
+<br>
+
+
+  <ng-template #option2>
+    <div>
+      <h1>You Must Log In first</h1>
+  </div>
+</ng-template>
