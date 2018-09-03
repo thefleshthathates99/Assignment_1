@@ -148,13 +148,29 @@ addUser(event) {
   }
 
   addGroup(event){
+    var z;
     event.preventDefault();
-    this.lists.push({'name': this.new_group, 'numberOfUsers': '1', 'memebers':[this.username]})
+    for (z in this.lists){
+      var barfoo = this.lists[z];
+      var cantFindSimilarGroup = false;
+      if (this.new_group != barfoo.name){
+        cantFindSimilarGroup = true;
+      }
+      else {
+        alert('There is already a group with name: ' + this.new_group)
+        break;
+      }
+    }
+    if (cantFindSimilarGroup != false){
+      this.lists.push({'name': this.new_group, 'numberOfUsers': '1', 'memebers':[this.username]})
+    }
+
   }
+
 
   removeUser(event){
     var z;
-    var: zz;
+    var zz;
     var cantFindRemoveUser = false;
 
     for (z in this.lists){
